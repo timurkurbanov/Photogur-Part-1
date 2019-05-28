@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-    <ul class="imagesgardcontainer"></ul>
+<ul>
     {% for picture in pictures %}
-        <a href="{% url 'picture_details' id=pic.pk %}">
-            <li class="imagesgard"> 
-                <a href="{% url 'picture_show' id=picture.id %}"><img src='{{ picture.url }}'></a><br>
-            <p>{{ picture.title }} by {{ picture.artist }} </p>
-            </li>
-        </a>
+        <li>
+            <a href="{% url 'picture_show' id=picture.id %}">
+                <img src='{{ picture.url }}'>
+            </a>
+            <br>
+            <h2>{{ picture.title }} by {{ picture.artist }}</h2>
+        </li>
     {% endfor %}
-    </ul>
+</ul>
 {% endblock %}

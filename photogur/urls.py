@@ -23,6 +23,6 @@ from photogur.views import root, pictures_page, picture_show
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", root),
-    path("pictures/", pictures_page, name="pictures"),
-    path("pictures/<int:id>", picture_show, name='picture_details'),
+    path("pictures/", pictures_page),
+    path("pictures/<int:id>", picture_show, name='picture_show')
     ]
