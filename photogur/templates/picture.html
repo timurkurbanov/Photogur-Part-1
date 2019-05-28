@@ -1,0 +1,7 @@
+{% for picture in pictures %}
+    <a href="{% url 'picture_details' id=picture.pk %}">
+        <li>
+            <strong>Comments: </strong> <br> {{ comment.name }} <br> {{ comment.message }} <br> {{ comment.created_at }}
+        </li>
+    </a>
+{% endfor %}
