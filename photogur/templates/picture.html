@@ -1,7 +1,25 @@
-{% for picture in pictures %}
-    <a href="{% url 'picture_details' id=picture.pk %}">
-        <li>
-            <strong>Comments: </strong> <br> {{ comment.name }} <br> {{ comment.message }} <br> {{ comment.created_at }}
-        </li>
-    </a>
-{% endfor %}
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+    <main class="picture-page-content">
+        <div class="container">
+            <h2>{{picture.title}}</h2>
+            <h3>{{picture.artist}}</h3>
+        </div>
+    
+        <img src="{{picture.url}}" alt="{{picture.title}}">
+
+        <div class="container img-comments-container">
+                <h3>Comments:</h3>
+                <ul class="comments">
+                    {% for comment in comments %}
+                        <li>
+                            <p class="message">{{comment.message}}</p>
+                            <p class="name">-{{comment.name}}</p>
+                            <p class="date">{{comment.created_at}}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+        </div>
+    </main>
+{% endblock %}
