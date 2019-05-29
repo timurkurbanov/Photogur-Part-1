@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # from photogur import views
-from photogur.views import root, pictures_page, picture_show
+from photogur.views import root, pictures_page, picture_show, create_comment, picture_search
 # from .views import *
 
 
@@ -24,5 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", root),
     path("pictures/", pictures_page),
-    path("pictures/<int:id>", picture_show, name='picture_show')
+    path("pictures/<int:id>", picture_show, name='picture_show'),
+    path("search", picture_search, name='picture_search'),
+    path("comments/new", create_comment, name='create_comment')
     ]

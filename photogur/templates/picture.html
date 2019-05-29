@@ -18,6 +18,10 @@
                             <p class="name">-{{comment.name}}</p>
                             <p class="date">{{comment.created_at}}</p>
                         </li>
+                        <form action="{% url 'create_comment' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="picture" value="{{ picture.pk }}">
+                        </form>
                     {% endfor %}
                 </ul>
         </div>
