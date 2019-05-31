@@ -5,9 +5,10 @@
 <h3 class="photo-artist">By: {{ picture.artist }}</h3>
 <div class="photo-wrapper">
 <img src="{{ picture.url }}" alt="{{ picture.title }}" />
+<p>Uploaded by {{ picture.user.username }}</p>
 </div>
 <div class="comments-wrapper">
-<h5>Your feedback:</h5>
+<h5>Your Comments:</h5>
 <ul>
     {% for comment in picture.comments.all %}
     <li>{{ comment.name }}:<br>{{ comment.message }} - {{ comment.created_at }}<br></li>
