@@ -3,7 +3,7 @@ from django.urls import path
 from django.shortcuts import render, reverse, redirect
 from photogur.models import Picture, Comment
 from photogur.forms import LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def root(request):
 	return HttpResponseRedirect('/pictures')
@@ -62,6 +62,10 @@ def login_view(request):
     context = {'form': form}
     http_response = render(request, 'login.html', context)
     return HttpResponse(http_response)
+
+def logout_view(request):
+	logout(request)
+	return HttpResponseRedirect('/pictures')
 
 # https://docs.djangoproject.com/en/2.2/topics/http/shortcuts/#example
 # def picture_show(request, id):
