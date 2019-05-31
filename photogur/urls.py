@@ -15,16 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from photogur import views
-from photogur.views import root, pictures_page, picture_show, create_comment, picture_search
-# from .views import *
-
+from photogur.views import pictures_page, picture_show, root, picture_search, create_comment
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", root),
-    path("pictures/", pictures_page),
-    path("pictures/<int:id>", picture_show, name='picture_show'),
-    path("search", picture_search, name='picture_search'),
-    path("comments/new", create_comment, name='create_comment')
-    ]
+    path('', root),
+    path('admin/', admin.site.urls),
+    path('pictures/', pictures_page, name='home'),
+    path('pictures/<int:id>', picture_show, name='picture_details'),
+    path('search', picture_search, name='picture_search'),
+    path('comments/new', create_comment, name='create_comment')
+]

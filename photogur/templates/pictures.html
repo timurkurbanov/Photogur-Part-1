@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
+
 {% block content %}
+<main class="gallery-container">
 <ul>
     {% for picture in pictures %}
-        <li>
-            <a href="{% url 'picture_show' id=picture.id %}">
-                <img src='{{ picture.url }}'>
-            </a>
-            <br>
-            <h2>{{ picture.title }} by {{ picture.artist }}</h2>
-        </li>
+    <li>
+        <a href="{% url 'picture_details' id=picture.pk %}">
+        <img src="{{ picture.url }}">
+        </a>
+    <p>{{ picture.title }} by {{ picture.artist }}</p>
+    </li>
     {% endfor %}
 </ul>
+</main>
 {% endblock %}

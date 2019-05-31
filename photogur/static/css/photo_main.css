@@ -1,0 +1,179 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
+input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+
+html {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.site-header {
+  color: blue;
+  border-bottom: blue 1px solid;
+  padding-left: 25px;
+  font-family: sans-serif;
+}
+
+.search-bar {
+  margin-bottom: 15px;
+}
+
+.gallery-container ul {
+  list-style: none;
+  padding: 0;
+  color: rgb(105, 104, 103);
+}
+
+.gallery-container li {
+  border: orange 3px solid;
+  margin: 2px auto;
+  width: 550px;
+}
+
+.gallery-container img {
+  max-width: 100%;
+  padding: 10px 10px 0 10px;
+  margin: 0 auto;
+}
+
+.gallery-container p {
+  padding-left: 10px;
+}
+
+.site-footer {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+
+.photo-title {
+  margin-left: 25px;
+  color: rgb(105, 104, 103);
+}
+
+.photo-artist {
+  margin-left: 30px;
+  color: rgb(105, 104, 103);
+}
+
+.photo-wrapper {
+  display: inline-block;
+  border: black 1px solid;
+  margin: 0 40px;
+}
+
+.photo-wrapper img {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+.comments-wrapper {
+  margin-left: 40px;
+}
+
+.comments-wrapper ul {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+}
+
+.comments-wrapper li {
+  padding: 10px;
+  margin: 2px;
+}
+
+.return {
+  display: inline-block;
+  margin: 25px;
+}
+
+.search-header {
+  color: rgb(105, 104, 103); 
+  margin-left: 15px;
+  margin-bottom: 30px;
+}
+
+.search-header span {
+  border-bottom: rgb(105, 104, 103) 3px solid;
+}
+
+.search-container ul {
+  list-style: none;
+}
+
+.search-pic-container {
+  display: block;
+  max-width: 500px;
+  margin: 5px;
+}
+
+.search-container img {
+  max-width: 100%;
+}
+
+.search-container p {
+  color: rgb(105, 104, 103);
+}
+
+.search-title {
+  font-style: italic;
+}
+
+.comment-form {
+  margin: 20px;
+}
+
+.name-field {
+  display: block;
+  padding: 5px;
+}
+
+.comment-field {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px;
+}
+
+.submit-comment-button {
+  margin: 5px;
+}
+
+@media only screen and (min-width: 900px) {
+
+  .gallery-container ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2px;
+  }
+
+  .search-pic-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+  }
+
+  .search-pic-container p {
+    align-self: flex-end;
+    margin-left: 15px;
+  }
+
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .gallery-container ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+  }
+
+  .gallery-container li {
+    width: 350px;
+  }
+
+}

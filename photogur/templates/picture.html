@@ -1,29 +1,39 @@
 {% extends 'base.html' %}
-{% block content %}
-{% load staticfiles %}
-    <main class="picturemain">
-        <div class="container">
-            <h2>{{picture.title}}</h2>
-            <h3>{{picture.artist}}</h3>
-        </div>
-    
-        <img src="{{picture.url}}" alt="{{picture.title}}">
 
-        <div class="container img-comments-container">
-                <h3>Comments:</h3>
-                <ul class="comments">
-                    {% for comment in comments %}
-                        <li>
-                            <p class="message">{{comment.message}}</p>
-                            <p class="name">-{{comment.name}}</p>
-                            <p class="date">{{comment.created_at}}</p>
-                        </li>
-                        <form action="{% url 'create_comment' %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="picture" value="{{ picture.pk }}">
-                        </form>
-                    {% endfor %}
-                </ul>
-        </div>
-    </main>
+{% block content %}
+<h2 class="photo-title">{{ picture.title }}</h2>
+<h3 class="photo-artist">By: {{ picture.artist }}</h3>
+<div class="photo-wrapper">
+<img src="{{ picture.url }}" alt="{{ picture.title }}" />
+</div>
+<div class="comments-wrapper">
+<h5>Your feedback:</h5>
+<ul>
+    {% for comment in picture.comments.all %}
+    <li>{{ comment.name }}:<br>{{ comment.message }} - {{ comment.created_at }}<br></li>
+    {% endfor %}
+</ul>
+</div>
+
+<form class="comment-form" action="{% url 'create_comment' %}" method="post">
+{% csrf_token %}
+<input type="hidden" name="picture" value="{{ picture.pk }}">
+
+<div class="name-field">
+    <label for="comment-name">Name:</label>
+    <input id="comment-name" type="text" name='comment-name'>
+</div>
+
+<div class="comment-field">
+    <label for="comment-body">Leave Comments:</label>
+    <textarea name="comment-body" id="comment-body" cols="15" rows="3"></textarea>
+</div>
+
+<input class="submit-comment-button" type="submit" value="Post Comment">
+
+<input type="hidden" name="date" value="{{ comment.created_at }}">
+
+</form>
+
+<a class="return" href="{% url 'home' %}">Back to Gallery</a>
 {% endblock %}
