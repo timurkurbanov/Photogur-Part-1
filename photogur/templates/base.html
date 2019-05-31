@@ -11,6 +11,13 @@
 </head>     
 <body>
 <header class="site-header">
+
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}">Sign out</a>
+    {% else %}
+    <a href="{% url 'login' %}">Sign in</a>
+    {% endif %}
+
     <h1>Gallery:</h1>
     <p>this was created to have all the drawings collected at one space</p>
     <form class="search-bar" action="{% url 'picture_search' %}" method="get">
@@ -20,6 +27,7 @@
     </label>
     <input type="submit" value="let's see!" />
     </form>
+
 </header>
 
 {% block content %}
