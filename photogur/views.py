@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import path
 from django.shortcuts import render, reverse, redirect
 from photogur.models import Picture, Comment
-from photogur.forms import LoginForm
+from photogur.forms import LoginForm, PictureForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
@@ -35,7 +35,6 @@ def picture_search(request):
 	}
 	response = render(request, 'search.html', context)
 	return HttpResponse(response)
-
 
 def create_comment(request):
 	picture_id = request.POST['picture']
@@ -81,6 +80,20 @@ def signup(request):
     else:
         form = UserCreationForm()
     html_response =  render(request, 'signup.html', {'form': form})
+    return HttpResponse(html_response)
+
+def new_picture(request):
+    if request.method == 'POST':
+        form = PictureForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            form.save()
+            return redirect("picture_details", id=instance.id)
+    else:
+        form = PictureForm()
+            
+    html_response = render(request, "user_add_picture.html", {'form': form})
     return HttpResponse(html_response)
 
 
