@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<main class="gallery-container">
-<ul>
-    {% for picture in pictures %}
-    <li>
-        <a href="{% url 'picture_details' id=picture.pk %}">
-        <img src="{{ picture.url }}">
-        </a>
-    <p>{{ picture.title }} by {{ picture.artist }}</p>
-    </li>
-    {% endfor %}
+<ul class="picture-gallery">
+  {% for pic in pics %}
+    <div class="frame">
+      <a class="picture-link" href="{% url 'picture_details' id=pic.pk %}">
+        <li class="picture-item">
+          <img class="picture" src={{pic.url}} alt={{pic.title}}>
+          <!-- all is all(), count is count() -->
+          <p class="picture-description">{{pic.title}} by {{pic.artist}}</p>
+          <p class="picture-user">Post by: {{pic.user.username}}</p>
+        </li>
+      </a>
+    </div>
+  {% endfor %}
 </ul>
-</main>
 {% endblock %}

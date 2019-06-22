@@ -1,42 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-{% load static %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-<link rel="stylesheet" href="{% static 'css/photo_main.css' %}">
-<title>{{ title }}</title>
-</head>     
-<body>
-<header class="site-header">
-
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'new_picture' %}">Add image</a>
-    <a href="{% url 'logout' %}">Sign out</a>
-    {% else %}
-    <a href="{% url 'login' %}">Sign in</a>
-    <a href="{% url 'signup' %}">New User</a>
-    {% endif %}
-
-    <h1>Gallery:</h1>
-    <p>this was created to have all the drawings collected at one space</p>
-    <form class="search-bar" action="{% url 'picture_search' %}" method="get">
-    <label for="picture-search">
-        <span>search:</span>
-        <input type="search" id="picture-search" name="query" value="{{ query }}"/>
-    </label>
-    <input type="submit" value="let's see!" />
-    </form>
-
-</header>
-
-{% block content %}
-{% endblock %}
-
-<footer class="site-footer">
-    &copy; timkurbanov.ca 2019
-</footer>
-</body>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Photogur</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="{% url 'root' %}">
+        <h1>Photogur</h1>
+      </a>
+      <form class="search-form" action="{% url 'picture_search' %}" method="get">
+        <label for="picture-search">
+          <span>Search:</span>
+          <input type="search" id="picture-search" name="query" value={{query}}>
+        </label>
+        <input type="submit" value="Search">
+      </form>
+      <nav class="site-nav">
+        <ul>
+          {% if request.user.is_authenticated %}
+            <li>Logged in as {{ request.user.username }}</li>
+            <li><a href="{% url 'user_pictures' %}">My posts</a></li>
+            <li><a href="{% url 'add_picture' %}">Add a pic</a></li>
+            <li><a href="{% url 'logout' %}">Log out</a></li>
+          {% else %}
+            <li><a href="{% url 'signup' %}">Sign up!</a></li>
+            <li><a href="{% url 'login' %}">Log in</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main class="site-content">
+    <!-- page-specific content goes inside the block -->
+    {% block content %}
+    {% endblock %}
+    </main>
+    <footer class="site-footer">
+      Copyright 2019 TimKurbanov.ca
+    </footer>
+  </body>
 </html>

@@ -1,27 +1,18 @@
 {% extends 'base.html' %}
-
 {% block content %}
-    <h2 class="search-header">Search Results: 
-    <span>{{ pictures.count }}</span>
-    </h2>
-    <main class="search-container">
-    <ul>
-        {% for picture in pictures %}
-        <li>
-            <div class="search-pic-container">
-                <a href="{% url 'picture_details' id=picture.pk %}">
-                <img src="{{ picture.url }}">
-                </a>
-                <p>
-                <span class="search-title">
-                    {{ picture.title }}
-                </span>
-                by {{ picture.artist }}
-                </p>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-        <a class="return" href="{% url 'home' %}">Back to Gallery</a>
-    </main>
+<div class="search-results">
+  <h3 class="search-heading">Search results: {{pictures.count}}</h3>
+  <ul class="search-list">
+    {% for picture in pictures %}
+      <div>
+        <a href="{% url 'picture_details' id=picture.pk %}">
+          <li class="search-item">
+            <img src="{{picture.url}}" alt="{{picture.title}}">
+            <p><span class="search-item-title">{{picture.title}}</span> by {{picture.artist}}</p>
+          </li>
+        </a>
+      </div>
+      {% endfor %}
+  </ul>
+</div>
 {% endblock %}

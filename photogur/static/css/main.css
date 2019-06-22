@@ -1,0 +1,173 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace
+  margin: 0;
+}
+
+.site-header {
+  text-align: left;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.site-header > a {
+  text-decoration: none;
+  color: grey;
+}
+
+.site-header > a:hover {
+  color: rgb(105, 217, 0);
+}
+
+.search-form {
+  margin-bottom: 10px;
+}
+
+.site-nav > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.site-nav li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.site-nav li:last-child {
+  margin-right: 0;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: #0074D9;
+}
+
+.site-nav a:hover {
+  color: silver;
+}
+
+.picture-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style-type: none;
+  grid-gap: 1em;
+  padding: 0;
+  margin: 20px 30px;
+}
+
+.frame {
+  border: 1px solid rgb(210, 189, 189);
+  padding: 5px;
+}
+
+.picture-link {
+  display: block;
+  text-decoration: none;
+  color: dimgrey;
+}
+
+.picture-item {
+  text-decoration: none;
+}
+
+.picture {
+  width: 100%;
+}
+
+.site-footer {
+  text-align: center;
+  background-color: #333;
+  font-family: 'Work Sans', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0.35em 0;
+}
+
+.site-content {
+  text-align: center;
+}
+
+.shown-image {
+  width: 100%;
+}
+
+.edit-photo {
+  text-decoration: none;
+  color: rgb(122, 137, 150);
+}
+
+.edit-photo:hover {
+  color: #333;
+}
+
+.comments > ul {
+  list-style-type: none;
+}
+
+.search-results {
+  margin: 0 20px;
+}
+
+.search-heading {
+  text-align: left;
+}
+
+.search-list {
+  list-style-type: none;
+  margin: 40px 0px 40px 20px;
+  padding: 0;
+}
+
+.search-list > div {
+  border-bottom: 1px solid lightgrey;
+  margin: 10px;
+}
+
+.search-list a {
+  text-decoration: none;
+  color: dimgrey;
+}
+
+.search-item {
+  height: 150px;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.search-item > img {
+  height: 100%;
+  display: inline-block;
+}
+
+.search-item > p {
+  display: inline-block;
+}
+
+.search-item-title {
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .picture-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .picture-gallery {
+    grid-template-columns: 1fr;
+  }
+  .search-item > img {
+    height: 80%;
+    display: block;
+  }
+
+  .search-item > p {
+    display: block;
+  }
+}

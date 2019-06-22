@@ -1,40 +1,31 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2 class="photo-title">{{ picture.title }}</h2>
-<h3 class="photo-artist">By: {{ picture.artist }}</h3>
-<div class="photo-wrapper">
-<img src="{{ picture.url }}" alt="{{ picture.title }}" />
-<p>Uploaded by {{ picture.user.username }}</p>
-</div>
-<div class="comments-wrapper">
-<h5>Your Comments:</h5>
-<ul>
+<h2>{{picture.title}}</h2>
+<h3>By {{picture.artist}}</h3>
+
+<img class="shown-image" src={{picture.url}} alt={{picture.title}} />
+{% if picture.user == request.user %}
+  <p>
+    <a class="edit-photo" href="{% url 'edit_picture' id=picture.id %}">Edit Picture</a>
+  </p>
+{% endif %}
+<div class="comments">
+  <h3>Comments:</h3>
+  <ul>
     {% for comment in picture.comments.all %}
-    <li>{{ comment.name }}:<br>{{ comment.message }} - {{ comment.created_at }}<br></li>
+    <li>{{comment.message}}</li>
     {% endfor %}
-</ul>
+  </ul>
+  <form action="{% url 'create_comment' %}" method="post">
+    {% csrf_token %}
+
+    <fieldset>
+      <legend>Submit a new comment</legend>
+      <input type="hidden" name="picture" value="{{picture.pk}}">
+      <input type="text" name="comment-name" placeholder="Name">
+      <input type="text" name="comment-message" placeholder="Comment">
+      <input type="submit" name="comment-submit" value="Submit Comment">
+    </fieldset>
+  </form>
 </div>
-
-<form class="comment-form" action="{% url 'create_comment' %}" method="post">
-{% csrf_token %}
-<input type="hidden" name="picture" value="{{ picture.pk }}">
-
-<div class="name-field">
-    <label for="comment-name">Name:</label>
-    <input id="comment-name" type="text" name='comment-name'>
-</div>
-
-<div class="comment-field">
-    <label for="comment-body">Leave Comments:</label>
-    <textarea name="comment-body" id="comment-body" cols="15" rows="3"></textarea>
-</div>
-
-<input class="submit-comment-button" type="submit" value="Post Comment">
-
-<input type="hidden" name="date" value="{{ comment.created_at }}">
-
-</form>
-
-<a class="return" href="{% url 'home' %}">Back to Gallery</a>
 {% endblock %}
